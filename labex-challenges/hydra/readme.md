@@ -16,6 +16,6 @@ Simular como os ataques de força bruta funcionam e por que eles podem compromet
 
 ---
 #### **Créditos:** 
-* Prática desenvolvida em [Laboratórios de Ciberseguranca para Iniciantes](https://labex.io/pt/courses/cybersecurity-labs-for-beginners) dentro da platanforma Labex
+* Prática desenvolvida em [Laboratórios de Ciberseguranca para Iniciantes](https://labex.io/pt/courses/cybersecurity-labs-for-beginners) dentro da plataforma **Labex**
 
 
