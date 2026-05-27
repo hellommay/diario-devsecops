@@ -38,15 +38,15 @@ Antes de iniciar um ataque, é necessário preparar as listas de alvos (usuário
 Para automatizar o teste contra uma página de login local, é usado o seguinte comando: 
 ``` hydra -L ~/project/usernames.txt -P ~/project/500-worst-passwords.txt localhost -s 8080 http-post-form "./:username=^USESR^&password=^PASS^:Invalid username or password" -o ~/projejct/hydra_results.txt ```
 
-* -L: Especifica o arquivo com a lista de usuários.
-* -P: Especifica o arquivo com a lista de senhas.
-* localhost -s 8080: Define o alvo (servidor local) e a porta de comunicação (8080).
-* http-post-form: O protocolo usado para interagir com formulários web que enviam dados via método POST.
-* /:username=^USESR^&password=^PASS^:Invalid username or password": 
-**/** - A rota da página de login. 
-**username=^USESR^&password=^PASS^** - Os nomes exatos dos campos do formulário onde o Hydra vai injetar os dados.
-**:Invalid username or password** - A mensagem de erro que o Hydra deve procurar para saber que a tentativa falhou. Se por acaso a mensagem mudar significa que deu certo.
-* -o: Salva os resultados positivos (credenciais encontradas) em um arquivo de texto.
+* ```-L```: Especifica o arquivo com a lista de usuários.
+* ```-P```: Especifica o arquivo com a lista de senhas.
+* ```localhost -s 8080```: Define o alvo (servidor local) e a porta de comunicação (8080).
+* ```http-post-form```: O protocolo usado para interagir com formulários web que enviam dados via método POST.
+* ```/:username=^USESR^&password=^PASS^:Invalid username or password"```: 
+```/``` - A rota da página de login. 
+```username=^USESR^&password=^PASS^``` - Os nomes exatos dos campos do formulário onde o Hydra vai injetar os dados.
+```:Invalid username or password``` - A mensagem de erro que o Hydra deve procurar para saber que a tentativa falhou. Se por acaso a mensagem mudar significa que deu certo.
+* ```-o```: Salva os resultados positivos (credenciais encontradas) em um arquivo de texto.
 
 #### Análise dos Resultados 
 Após a execução, os logins válidos são exibidos no formato (login: [usuario] password: [senha] found.)
