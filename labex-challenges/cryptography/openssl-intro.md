@@ -24,10 +24,9 @@ Nesse momento, o conteúdo ainda está totalmente legível e sem proteção.
 #### Conceitos importantes aprendidos:
 
 * **enc** - modo de criptografia.
-* **aes-256-cbc** - 
-aes: algoritmo de criptografia simétrica muito utilizado no mundo.
-256: tamanho da chave (mais seguro).
-cbc: modo de operação que aumenta a segurança dos blocos criptografados.
+* **aes** - algoritmo de criptografia simétrica muito utilizado no mundo.
+* **256** - tamanho da chave (mais seguro).
+* **cbc** - modo de operação que aumenta a segurança dos blocos criptografados.
 * **-salt** - adiciona aleatoriedade para aumentar a segurança.
 * **-in** - arquivo original.
 * **-out** - arquivo criptografado.
