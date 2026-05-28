@@ -1,4 +1,10 @@
 # Introdução à Criptografia com OpenSSL (hands-on lab)
+
+Nesta aula do LabEx, foi apresentada uma introdução prática à criptografia utilizando o software OpenSSL no Linux. 
+O objetivo principal foi entender como proteger informações através da criptografia e descriptografia de arquivos usando o terminal.
+Foi uma introdução prática aos conceitos de segurança da informação e proteção de dados utilizando ferramentas amplamente usadas em ambientes DevOps, DevSecOps e Cybersecurity.
+Esta experiência prática introduz aos princípios fundamentais da criptografia que formam a base da segurança de dados moderna. 
+
 ---
 
 ### 1- Criação de um arquivo de texto simples
@@ -84,8 +90,11 @@ Ao tentar descriptografar utilizando uma senha incorreta:
 
 ---
 
-#### Resumo:
-Esta experiência prática introduz aos princípios fundamentais da criptografia que formam a base da segurança de dados moderna. 
-Seja para proteção de dados pessoais ou desenvolvimento profissional, essas habilidades fornecem uma base sólida para futuras explorações em cibersegurança.
+#### Principais aprendizados:
+
+* A segurança depende diretamente da força da senha.
+* Chaves devem ser armazenadas com segurança.
+* Nunca armazenar senhas junto dos arquivos criptografados.
+* Pequenas diferenças na senha tornam a descriptografia impossível.
 
 
