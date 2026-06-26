@@ -1,3 +1,7 @@
+> Fase 04 - módulo 4
+
+Tarefa da aula é escrever o texto explicando sobre os 5 passos do fluxos.
+
 > Docker run hello-world
 
 1. O cliente Docker (CLI) envia a ordem para o Docker Daemon (o motor/serviço em segundo plano).
