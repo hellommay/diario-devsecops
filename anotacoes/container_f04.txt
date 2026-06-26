@@ -4,16 +4,16 @@ Tarefa da  aula é escrever o texto falando sobre a diferença entre container e
 
 #### Virtual Machine (VM)
 
+* Analogia: A VM é como um prédio inteiro do zero
 * Uma máquina virtual que carrega um sistema operacional inteiro.
-* É mais segura porque isola mais por ter o kernel próprio, é como contruir um prédio inteiro do zero.
+* É mais segura porque isola mais por ter o kernel próprio.
 * Mais lenta e leva minutos para ligar.
-* Analogia: A VM é como um prédio inteiro
 
 #### Container
 
+* Analogia: O container é como as salas comerciais dentro do prédio
 * O container tem sua unidade isolada mas compartilhada, ele usa os recursos do kernel do host.
 Troca um pouco do isolamento por muita velocidade, é mais leve.
-* Analogia: O container é como as salas comerciais dentro do prédio, tem sua unidade isolada, mas compartilhada, pois usa os recursos do kernel do host.
 
 ### Qual e como usaria?
 
