@@ -25,7 +25,7 @@ Tarefa da  aula é escrever o texto falando sobre a diferença entre container e
 
 Usaria VMs quando precisasse de isolamento total de sistemas diferentes e containers para subir aplicações leves e rápidas no dia a dia.
 
-==============================================================
+---
 
 ## Módulo 4
 
@@ -51,21 +51,71 @@ Ele separa um espaço isolado no sistema  e prepara tudo para rodar, usando o pr
 5. O container é executado, exibe a mensagem de sucesso e finaliza.
 O container liga, roda o programa que está ali dentro (quee apenas imprime o texto "Hello from Docker")e, como a missão dele era só essa, ele desliga sozinho logo em seguida.
 
-================================================================
+---
+
+## Módulo 7 & 8
+
+Etapa: Imagens, Tags e Camadas
+Data: 25/06/26
+
+#### 1. Evidências e Caça à informação
+Comapração de tamanho das imagens (`docker images`):
+- python:3.12 -> 1.62 GB (base cheia)
+- python:3.12 -> 179 MB (base magra)
+Diferença: a versão slim é drasticamente menor, ideal para produção.
+
+Inspeção (`docker inspect python3.12-slim`):
+- Campo `cmd` padrão encontrado: python3
+
+Comportamento do pull sem tag (`docker pull redis`)
+- Tag atribuída automaticamente: latest
+Alerta: Evitar! latest é flutuante e quebra a reprodutividade.
+
+Camadas (`docker history python:3.12`):
+- Maior camada encontrada:  694MB (responsável por ex: instalações de pacotes/ferramentas)
+- Quantidade de camadas com 0B: 6 camadas (metadados como cmd, env, workdir).
+- hello-world é minuscula porque ela possui apenas uma camada básica que executa um binário simples compilado, sem sistema operacional.
+
+#### 2. Conceitos chave absorvidos
+
+Analogia:
+* Imagem = A receita do bolo (imutável, empacotada, guardada na estante).
+* Container = O bolo assado (instância viva, alterar o bolo não muda a receita)
+
+DockerHub:
+* Sempre preferir imagens oficiais ou de publicados verificados.
+* Imagens desconhecidas = código de terceiros rodando com superpoderes no meu host.
+
+Camadas:
+* Uma imagem é uma pilha de fatias imutáveis, cada uma com um Hash único.
+* Cache: Camadas idênticas são baixadas e armazenadas apenas uma vez no disco.
+* Camada é pra sempre: deletar um arquivo/segredo (`.env`) em uma camada superior apenas o esconde, mas ele continua exumável nas camadas.
+* O cache do build funciona de baixo pra cima. Se a camada 2 mudar, todas as de cima (3, 4...) serão recosntruidas do zero.
+
+#### 3. Comandos essenciais para o dia a dia
+
+* `docker images` - lista as imagens locais.
+* `docker ps -a ` - lista os containers existentes.
+* `docker search` - busca imagens direto no docker hub via terminal.
+* `docker inspect` - raio-x completo da imagem/container em formato JSON.
+* `docker histoy` - Exibe todas as camadas que compõem aquela imagem.
+* `docker rmi` - Remove uma imagem (falha se tiver container atrelado a ela).
+
+---
 
 ## Módulo 11
 
-Desafio: Otimizacao e Seguranca de Imagens
+Etapa: Docker Profissional - Otimização e Segurança de Imagens
 Data: 01/07/26
 
 #### 1. O que foi executado:
 
-Comparacao de tamanho das imagens (docker images):
+Comparação de tamanho das imagens (docker images):
 - meu-app:1.0 -> 1.02 GB (base cheia, com cache e lixo local)
 - meu-app:2.0 -> 140 MB (base slim,s em cache do pip, filtrada)
-Resultado: reducao drástica de tamanho
+Resultado: redução drástica de tamanho
 
-Validacao de privilégios (whoami):
+Validação de privilégios (whoami):
 - comando: `docker run --rm meu-app:1.0 whoami`
 - retorno: root (vulnerável)
 
@@ -75,10 +125,10 @@ Validacao de privilégios (whoami):
 #### 2. Conceitos chave absorvidos:
 
 * `.dockerignore` impede que arquivos locais como `.git`, `__pycache__`e, principalmente, o `.env`entrem nas camadas da imagem Docker.
-* Imagens base `:slim`trazem equilibrio para o mercado, evitando o peso da imagem cheia e as compatibilidades de compilacao da base `alpine`.
+* Imagens base `:slim`trazem equilibrio para o mercado, evitando o peso da imagem cheia e as compatibilidades de compilação da base `alpine`.
 * `--no-cache-dir`no pip evita o acumulo de arquivos temporarios de download dentro da camada do container.
 * O principio do menor privilégio: isntalar os pacotes como `root`e rebaixar o usuario para `operario`no final do Dockerfile protege o host caso o container seja invadido.
 
 #### 3. A Diferenca entre `.gitignore` e `.dockerignore`:
 * `.gitignore`: diz ao git o que não salvar no historico e não subir para o GitHub (protege o código na nuvem).
-* `.dockerignore`: diz ao Docker o que não incluir no build do container. (protege o ambiente de producão contra vazamento de segredos(.env) e imagens infladas).
+* `.dockerignore`: diz ao Docker o que não incluir no build do container. (protege o ambiente de produção contra vazamento de segredos `.env` e imagens infladas).
