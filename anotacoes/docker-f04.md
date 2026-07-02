@@ -132,3 +132,27 @@ Validação de privilégios (whoami):
 #### 3. A Diferenca entre `.gitignore` e `.dockerignore`:
 * `.gitignore`: diz ao git o que não salvar no historico e não subir para o GitHub (protege o código na nuvem).
 * `.dockerignore`: diz ao Docker o que não incluir no build do container. (protege o ambiente de produção contra vazamento de segredos `.env` e imagens infladas).
+
+---
+
+## Módulo 12
+
+* Containers são descartáveis: Se o container morre, os dados gerados dentro dele somem.
+* Volumes são persistentes: Isolam os dados cruciais (como banco de dados e uploads) do ciclo de vida do container. O container vira apenas o motor, enquanto os dados ficam guardados no cofre gerenciado pelo Docker
+
+#### Desafio da etapa:
+
+Ao rodar o comando do novo container **banco2**, os dados inseridos no primeiro container continuam intactos.
+
+-> Comando: `docker exec -it banco2 psql -U postgres -c "SELECT * FROM recrutas;"`
+-> Resultado: nome
+            ------
+            voce (1 row)
+
+Este comando mostra onde o Docker gerencia os arquivos fisicamente no host (no territorio do Docker) `docker volume inspect cofre-pg`
+
+-> Mountpoint : `/var/lib/docker/volumes/cofre-pg/_data"`
+
+
+* Volume: Usado para dados de produção (como banco de dados), pois o Docker gerencia o local de forma segura e isolada.
+* Bind Mount: Usado em desenvolvimento, pois espelha uma pasta local da máquina para editar o código em tempo real.
