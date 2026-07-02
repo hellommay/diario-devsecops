@@ -156,3 +156,15 @@ Este comando mostra onde o Docker gerencia os arquivos fisicamente no host (no t
 
 * Volume: Usado para dados de produção (como banco de dados), pois o Docker gerencia o local de forma segura e isolada.
 * Bind Mount: Usado em desenvolvimento, pois espelha uma pasta local da máquina para editar o código em tempo real.
+
+---
+
+## Módulo 13
+
+* IP: São voltáteis, containers nacsem e morrem com IPs novos. Decorar ou fixar IPs em arquivos de configuração é um anti-padrão grave.
+* DNS embutido: O Docker possui um servidor DNS interno que transforma o nome do container em um histname válido
+
+A resolução de nomes por hostname só funciona em redes customizadas (`docker network create`). Na rede padrão (`bridge`), os containers só conseguem se comunicar se usar o IP direto.
+
+O banco de dados não deve expor as portas para a máquina host (`-p`) por questões de segurança (seguindo o principio do menor privilégio).
+Como a API já está na mesma rede virtual e consegue acessa-lo diretamente pelo nome, abrir a porta 5432 para o mundo externo seria expor o cofre desnecessáriamente para a rede interna inteira ou para a internet (criando uma superfice de ataque vulneravel).
